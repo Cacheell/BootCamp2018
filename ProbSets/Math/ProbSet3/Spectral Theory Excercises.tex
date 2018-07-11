@@ -1,0 +1,254 @@
+\documentclass[11.5pt, letterpaper, bibtotoc,
+    tablecaptionabove, figurecaptionabove]{article}
+
+
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{15pt}
+\setlength{\topmargin}{-25pt}
+\setlength{\topskip}{0in}
+\setlength{\textheight}{8.7in}
+\setlength{\footskip}{0.3in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+
+\usepackage{setspace}
+\setstretch{1.2}
+\setlength{\parskip}{5pt}%{6pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{subfigure}
+\usepackage{subfiles}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\graphicspath{{images/}{../images/}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}{Notation}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remarks}{Remarks}
+\newtheorem{examples}{Examples}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ri}{ri}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\essential}{ess}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+
+\makeatletter
+\newcommand{\leqnomode}{\tagsleft@true\let\veqno\@@leqno}
+\newcommand{\reqnomode}{\tagsleft@false\let\veqno\@@eqno}
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert#1
+\right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\makeatother
+
+\usepackage{bm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\textbf{Cache Ellsworth}
+
+\section*{Spectral Theory Exercises}
+
+\subsection*{Exercise 2 }
+The only distinct eigenvalue is $0$.  The  eigenspace is $[1, 0, 0]^T$.  The Geometric and algebraic multiplicities are then one and three.   
+
+
+\subsection*{Exercise 4}
+(i)
+Let A be a Hermitian $2 \times 2$ matrix with entries of a, b, c, d $\in \mathbb{C}$ in the obvious entries. So, 
+  
+\begin{align*}
+	\lambda \pm = \frac{1}{2}(\text{Tr}(A) \pm \sqrt{\text{Tr}(A)^2 - 4\text{det}(A)}).  
+\end{align*}
+We know that $A = A^H$ and so $b$ must equal $\bar{c}$.  Thus the discriminant is: 
+\begin{align*}
+	(a + d)^2 - 4(ad -bc) = (a + d)^2 - 4(ad -b\bar b)
+					 = a^2 + 2ad + d^2 - 4ad + 4b\bar b 
+					 = a^2 - 2ad + d^2 + 4b \bar b
+					 = (a - d)^2 + 4b\bar b.
+\end{align*}
+We know that a complex number times it's conjugate is always a positive real number.  Thus the discriminant is a positive number and so the eigenvalue is real.
+
+(ii)
+Let A be a skew-Hermitian $2 \times 2$ matrix with entries of a, b, c, d $\in \mathbb{C}$ in the obvious entries. So,
+\begin{align*}
+	\lambda \pm = \frac{1}{2}(\text{Tr}(A) \pm \sqrt{\text{Tr}(A)^2 - 4\text{det}(A)}).  
+\end{align*}
+We know that $A^H = -A$ and so $a = - \bar a$ and $ d = - \bar d$.  So the real parts of these numbers are equal to $0$ , the imaginary parts are still there though which are represented by $a_zi, d_zi$.  Thus the discriminant is:
+\begin{align*}
+	(a + d)^2 - 4(ad -bc) &= (a + d)^2 - 4(ad -bc)\\
+					 &= a^2 + 2ad + d^2 - 4ad + 4bc\\
+					 &= a^2 - 2ad + d^2 + 4bc\\
+					 &= (a - d)^2 - 4c \bar c\\
+					 &= (a_zi - d_zi)^2 - 4c\bar c\\
+					 &= (i)^2(a_z - d_z)^2 - 4c\bar c\\
+					 &= -(a_z - d_z)^2 - 4 c \bar c
+\end{align*}
+We know that a complex number times it's conjugate is always a positive real number.  So, then the discriminant is a negative number and so the eigenvalue has an imaginary part.  Furthermore, $  \text{Tr}(A) = \text{a negative complex number}$ and so the eigenvalue is fully imaginary.
+
+\subsection*{Exercise 6 }
+\begin{proof}
+Let A be an $n \times n$ upper-triangular matrix with $a_{ii}$ in the diagonal .  Then,
+\begin{align*}
+	\text{det}(\lambda I - A) = \prod_{i=1}^{n} (\lambda - a_{ii})
+\end{align*}
+by definition of the determinate of an upper-triangular matrix.  Setting this equal to 0 to find  our eigenvalues, we see that $a_ii$ is equal to $\lambda$ and nothing else will be equal to $\lambda$.  Therefore, the diagonal entries of $A$ are the eigenvalues.
+\end{proof}
+	
+	
+\subsection*{Exercise 8 }
+Let V be the span of the set $S = \{\text{sin}(x), \text{cos}(x), \text{sin}(2x), \text{cos}(2x) \}$ in the vector space $C^\infty (\mathbb{R}; \mathbb{R})$.
+(i)
+Because V is the span of S, we only need to check if S is linearly independent. In the last problem set we saw that the elements in S are equal to 0 if we multiply them to a different element in the set and take the integral.  This shows that they are are orthonormal under the inner product.  Therefore, they are independent and are a basis of V.
+(ii)
+\begin{align*}
+    	\begin{bmatrix}
+        		0 & -1 & 0 & 0\\
+        		1 & 0 & 0 & 0\\
+		0 & 0 & 0 & 2\\
+		0 & 0 & -2 & 0
+    \end{bmatrix}
+\end{align*}
+
+(iii)
+  a) $\text{span}\{\text{sin}(x), \text{cos}(x)\}$.  b) $ \text{span}\{\text{sin}(2x), \text{cos}(2x)\}$.
+  
+  
+\subsection*{Exercise 13}
+\begin{align*}
+	P = 
+	\begin{bmatrix}
+        		-1 & 2\\
+        		1 & 1
+    \end{bmatrix}
+    \text{. So, } P^{-1} A P = D =
+    	\begin{bmatrix}
+        		0.4 & 0\\
+        		0 & 1
+    \end{bmatrix}.
+\end{align*}
+
+
+\subsection*{Exercise 15}
+\begin{proof}
+Let $(\lambda)_{i=1}^n$ be the eigenvalues of a semi-simple matrix $A \in M_n(\mathbb F)$ and $f(x) = a_0 + a_1x + \dots + a_nx^n$ is a polynomial.  Then, 
+\begin{align*}
+	f(A) = a_0 + a_1A + \dots + a_nA^n = a_0I + a_1P^{-1}DP + \dots + a_nP^{-1}D^nP\\
+\end{align*}
+by proposition $4.3.10$ and $A=P^{-1}DP$ where $D= \text{diag}(\lambda_i)_{i=1}^n$ because A is semi-simple by Theorem $4.3.7$.  We know that $a_i$ is a constant and so the equation becomes,
+\begin{align*}
+	f(A) =  P^{-1}a_0P + P^{-1}*a_1*DP + \dots + P^{-1}*a_n*D^nP = P^{-1}f(D)P
+\end{align*}
+Then by definition of diagonalizable the eigenvalues of $f(A)$ are $(f(\lambda_i))_{i=1}^n$.
+\end{proof}
+
+\subsection*{Exercise 16}
+(i). If we separate A as in exercise 13(    $\text{. So, } P^{-1} A P = D =
+    	\begin{bmatrix}
+        		0.4^k & 0\\
+        		0 & 1
+    \end{bmatrix}.)$ 
+   and take the limit we see that the D matrix is:
+    $\text{. So, } P^{-1} A P = D =
+    	\begin{bmatrix}
+        		0 & 0\\
+        		0 & 1
+    \end{bmatrix}.$
+    Thus,
+    \begin{align*}
+    	B = \text{inv}(\begin{bmatrix}
+		-1 & 2 \\
+		1 & 1
+		\end{bmatrix})
+\end{align*}
+Taking the difference gives us a number raised to the k power which will converge to 0.
+(ii)
+The $\infty$-norm:  $||A^k - B||_{\infty} = 0.4^k$.  This converges to 0.  \\
+The Frobenius norm: $\sqrt{\text{tr}((A^k-B)^T(A^k -B))} =$ some number that converges to 0.  Verified by Python.
+(iii)
+The eigenvalues are $f(1) = 9$ and $f(0.4) = 5.064$.
+
+\subsection*{Exercise 18}
+\begin{proof}
+We see that the transpose of $A$ has the same eigenvalues as A.  Considering the characteristic polynomial of $A: \text{det}(\lambda I - A) = \text{det}((\lambda I - A)^T )$ which is the characteristic polynomial of $A^T$.  Therefore we know that if $\lambda$ is a an eigenvalue of A then it is an eigenvalue of $A^T$.  So then $A^T \bf x= \lambda \bf x$.   Taking the transpose of this equation, we have: $\bf{x^T} A = \lambda \bf {x^T}$
+\end{proof}
+
+\subsection*{Exercise 20}
+\begin{proof}
+Let A be Hermitian and orthonormally similar to B. Therefore $ A^H = H$ and $\exists$ an orthonormal matrix $U$ such that $B=U^HAU$.  Computing the hermitian of both sides we get:
+\begin{align*}
+	B^H = (U^HAU)^H = U^HA^HU^{H^H} = U^HA^HU = U^HAU = B
+\end{align*}
+Thus $B$ is also a Hermitian matrix.
+\end{proof}
+
+\subsection*{Exercise 24}
+We let A be a hermitian matrix and so $A^H = A$.  We notice:
+\begin{align*}
+	\bar{x^HAx} = (x^HAx)^H = x^hA^Hx = x^HAx
+\end{align*}
+Notice we move from to the first inequality because the transpose of a scalar. And also if the conjugate is equal to the real value then there is no imaginary part.  Thus, the Rayleigh quotient can only take on real values for Hermitian matrices.\\
+Now, we let A be a skew-Hermitian matrix.  Then:
+\begin{align*}
+	\bar{x^HAx} = (x^HAx)^H = x^hA^Hx = -xAx
+\end{align*}
+
+The conjugate is equal to the negated value.  Which, means that there is no real part to the number; only imaginary.  Thus, the Rayleigh quotient can only take on imaginary values for skew-Hermitian matrix.
+
+\subsection*{Exercise 25}
+
+\subsection*{Exercise 27}
+\begin{proof}
+	Let $A \in M_n(\mathbb F)$ is positive definite.  Therefore, A is hermitian.  So $A=A^H$. Thus the diagonal elements are real numbers.  We also know that $x^TAx > 0 \implies \langle x, Ax\rangle > 0$.  This shows that the diagonals are positive.  
+\end{proof}
+
+\subsection*{Exercise 28}
+This is Albi's proof, but we worked on it together.*\\
+\\
+By proposition $4.5.7$, There exist matrices $S_A$ and $S_B$ 
+such that $A=S_A^HA_A$ and $B = S_B^HS_B$.
+Then 
+\begin{align*}
+    \text{Tr}(AB) = \text{Tr}(S_A^HS_AS_B^HS_B) =
+    \text{Tr}(S_BS_A^HS_AS_B^H) = \text{Tr}((S_AS_B^H)^HS_AS_B^H)
+    = ||S_AS_B^H||_F^2\geq 0.
+\end{align*}
+
+By Proposition $4.5.6$ $A=Q_AD_AQ_A^H$ and $B=Q_BD_BQ_D^H$, where $Q_A$ and $Q_B$
+are orthonormal and $D_A$, $D_B$ are diagonal matrices containing the eigenvalues
+of $A$ and $B$ respectively.
+Since the trace is invariant under orthonormal transformations we have
+\begin{align*}
+    \text{Tr}(AB)=\text{Tr}(D_AD_B)=\sum_i\lambda_i^A\lambda_i^B\leq
+    \left(\sum_i\lambda_i^A\right)\left(\sum_i\lambda_i^B\right)=\text{Tr}(A)\text{Tr}(B),
+\end{align*}
+which concludes the proof.
+
+\subsection*{Exercise 31}
+\subsection*{Exercise 32}
+\subsection*{Exercise 33}
+\subsection*{Exercise 36}
+\subsection*{Exercise 38}
+
+
+\end{document}
