@@ -1,0 +1,265 @@
+\documentclass[11.5pt, letterpaper, bibtotoc,
+    tablecaptionabove, figurecaptionabove]{article}
+
+
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{15pt}
+\setlength{\topmargin}{-25pt}
+\setlength{\topskip}{0in}
+\setlength{\textheight}{8.7in}
+\setlength{\footskip}{0.3in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+
+\usepackage{setspace}
+\setstretch{1.2}
+\setlength{\parskip}{5pt}%{6pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{subfigure}
+\usepackage{subfiles}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\graphicspath{{images/}{../images/}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}{Notation}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remarks}{Remarks}
+\newtheorem{examples}{Examples}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ri}{ri}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\essential}{ess}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+
+\makeatletter
+\newcommand{\leqnomode}{\tagsleft@true\let\veqno\@@leqno}
+\newcommand{\reqnomode}{\tagsleft@false\let\veqno\@@eqno}
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert#1
+\right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\makeatother
+
+\usepackage{bm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\textbf{Cache Ellsworth}
+
+\section*{Convex Analysis Exercises}
+
+\subsection*{Exercise 6.6 }
+There are four critical points for this function.  
+\begin{enumerate}
+	\item $x = -\frac{1}{3}, \: y=0$
+	\item $x = 0, \: y=0$
+	\item $x = 0, \: y=- \frac{1}{4}$
+	\item $x = -\frac{1}{9}, \: y=-\frac{1}{12}$
+\end{enumerate}
+Taking the second order derivative and solving for the eigenvalues, (Done in Python) We get the following eigenvalues
+\begin{enumerate}
+	\item $\frac{1}{3}, \: -3$
+	\item $1, \: -1$
+	\item $-2,\: \frac{1}{2}$
+	\item $-0.30854,\: -1.08034$
+\end{enumerate}
+From these eigenvalues we see that the the following critical points are either local maxima, minima, or saddle points by the theory that if both eigenvalues are negative it is a local maxima and if one is is positive and one is negative it is a saddle point.
+\begin{enumerate}
+	\item Saddle Point
+	\item Saddle Point
+	\item Saddle Point
+	\item Local Maxima
+\end{enumerate}
+
+\subsection*{Exercise 6.7}
+i) 
+\begin{align*}
+	Q^T = (A^T + A)^T = A^{T^T} + A^T = A^T + A = Q. \\
+	\text{ and } x^TQx = x^T(A^T + A)x = x^TA^Tx + x^TAx.
+\end{align*}
+We see that $(x^TAx)^T = x^TA^{T^T}x = x^TAx.  x^TA^TX$ Is a scalar so it must be it's transpose is equal to itself.  So then $x^TQx = 2x^TAx$.  \\
+ii)
+Using the GONC on $f(x).$  We assume $x^*$ is a minimizer of $F$.  This problem is unconstrained so $x^*$ is always an interior point.  (Everything is feasible.). Then $Df(x^*) = 0.$  So $Df(x^*) = \frac{1}{2}x^T(Q + Q^T) - b^T = 0$ (by Prop 6.4.6(ii)).
+\begin{align*}
+	\implies \frac{1}{2}x^T(Q + Q^T) = b^T \implies \frac{1}{2} x^T 2Q = b^T \implies x^TQ = b^T \implies Q^Tx=b.
+\end{align*}
+iii)
+\begin{proof}
+$(\implies :)$ We assume there's a minimizer solution, we call it $x^*$.  Then by SONC and knowing it's an interior point we know that $D^2f(x^*)$ is positive semidefinite.  $D^2f(x^*) = D(x^TQ - b^T) = Q^T.$ So $Q^T \geq 0$.  We assume by contradiction $Q^T = 0 \implies x^TQ^Tx = 0$.  Then $f(x) = -b^Tx + c$ and, $f(x^*) = 0$.  $f(x) > f(x^*)$ by assumption, so $-b^Tx + c > c \implies -b^Tx > 0 \implies b^Tx < 0$.  This is a contradiction because x can be infinitely big, and so can $b$ because it is unconstrained.  So $Q^T \neq 0$.  Therefore $Q^T > 0$.  So $Q^T$ is semidefinite.
+$(\impliedby :)$. We assume $Q^T$ is semidefinite.  By the invertible matrix theorem and because Q is symmetric, and a square, and all eigenvalues of Q not equal to zero.  Then $Df(x) = Q^Tx - b^T$ has a $x_0$ where $x_0^TQ = b$.  This is a solution when $Df(x_0) = 0$.  So therefore by $Df(x_0) = 0$ and $D^2f(x_0) > 0$ we have a minimizer $x_0$ by the SOSC.  
+Solving the system $Q^Tx^* = b$ with positive definite $Q$ is equivalent to solving the quadratic problem $f(x)$ because $Q^Tx^* = b$ is just the FONC for the quadratic problem. 
+\end{proof}
+
+\subsection*{Exercise 6.11}
+\begin{proof}
+Let $f(x) = ax^2 +bx +c$ and $a>0$ where $a,b,c \in \mathbb{R}$.  Then Newton's Equation,
+\begin{align*}
+	x_1 = x_0 - \frac{2x_0a + b}{2a} = \frac{2ax_0 - 2x_0a -b}{2a} = -\frac{b}{2a}
+\end{align*}
+Therefore, this doesn't rely on any initial starting point.  We know this is unique because $f$ is quadratic.  
+\end{proof}
+
+\subsection*{Exercise 6.15}
+See jupyter notebook Secant
+
+\subsection*{Exercise 7.1}
+\begin{proof}
+Let $S$ be a nonempty subset of V.  Conv$(S) = \{ \lambda_1x_1 + \dots + \lambda_Kx_K, x_i \in S, K \in \mathbb{N} \}$
+We take $v, w \in Conv(S)$, so $v = \sum_k \lambda_{a,k} x_k$ where $ \lambda_{a, k} \geq 0$ and $\sum_k \lambda_{a, k} = 1$. The w vector will have $\lambda_b$.   We let $r = tv + (1 - t)w$ where $ \in [0, 1]$.  Then,  we choose the maximum k of v and w.  Then $r = \sum_k (t\lambda_{a, k} + (1 -t)\lambda_{b, k})x_k$. Then $ \sum_k (t\lambda_{a, k} + (1 -t)\lambda_{b, k}) = 1$ and $ (t\lambda_{a, k} + (1 -t)\lambda_{b, k}) \geq 0 $.  This implies that $ r \in Conv(S)$.  Thus, S is convex.
+\end{proof}
+
+
+\subsection*{Exercise 7.2}
+i) 
+\begin{proof}
+	Let $P$ be a hyperplane in $V$.  So $P=\{ x \in V | \langle a, x \rangle = b, a \in V, a\neq 0, b \in \mathbb R \}$
+	\begin{align*}
+		\forall x, y \in P, \: \lambda x + (1 - \lambda)y \in P,\: 0 \leq \lambda \leq 1
+	\end{align*}
+	So we choose $x, y \in P$.  Then we know that
+	\begin{align*}
+		a_1 x_1 + \dots + a_n x_n = b, a_1 y_1 + \dots + a_n y_n = b.  \text{. Then, } \\
+		\lambda(a_1 x_1 + \dots + a_n x_n) = \lambda b , \:(1- \lambda)(a_1 y_1 + \dots + a_n y_n) = (1 - \lambda)b.\\
+		\text{ adding the equations together, } \lambda(a_1 x_1) + \dots + \lambda(a_n x_n) +(1- \lambda)(a_1 y_1) + \dots + (1- \lambda)(a_n y_n) = b
+	\end{align*}
+	So $\lambda x + (1 - \lambda)y \in P$.
+\end{proof}
+ii) 
+\begin{proof}
+	Let $H$ be a halfspace in $V$.  So $H=\{ v \in H | \langle a, v \rangle \leq b, a \in V, a\neq 0, b \in \mathbb R \}$
+	\begin{align*}
+		\forall v, w \in H, \: \lambda v + (1 - \lambda)w \in H,\: 0 \leq \lambda \leq 1
+	\end{align*}
+	So we choose $v, w \in H$.  Then we know that
+	\begin{align*}
+		a_1 v_1 + \dots + a_n v_n \leq b, a_1 w_1 + \dots + a_n w_n \leq b.  \text{. Then, } \\
+		\lambda(a_1 v_1 + \dots + a_n v_n) \leq \lambda b , \:(1- \lambda)(a_1 w_1 + \dots + a_n w_n) \leq (1 - \lambda)b.\\
+		\text{ adding the equations together, } \lambda(a_1 v_1) + \dots + \lambda(a_n v_n) +(1- \lambda)(a_1 w_1) + \dots + (1- \lambda)(a_n w_n) \leq b
+	\end{align*}
+	So $\lambda v + (1 - \lambda)w \in H$.
+\end{proof}
+
+\subsection*{Exercise 7.4}
+i)
+\begin{align*}
+	||x - y||^2 = ||x - y + p - p||^2 &= \langle x - p - y + p, x - p + p - y \rangle \\
+	 &= \langle x - p, x - p \rangle + \langle p - y, p- y \rangle + 2\langle x - p, p - y \rangle \\
+	 &= ||x - p||^2 + ||p - y||^2 + 2\langle x - p, p - y\rangle.
+\end{align*}
+ii)
+Let $\langle x - p, p - y \rangle \geq 0.$  Thus by (i) and knowing that all norms are non-negative and that if $||p - y|| = 0 $ then our assumed positive equation will not equal 0.  Then,
+\begin{align*}
+	||x - p||^2 < ||x-y||^2 \implies ||x-p|| < ||x - y||
+\end{align*}
+iii)
+We apply (i).
+\begin{align*}
+	||x - z||^2 &= ||x - p||^2 + ||p-\lambda y - (1 - \lambda)p||^2 + 2\langle x- p, p - (\lambda y + (1-\lambda)p )\rangle \\
+	&= ||x- p||^2 + 2\lambda \langle x - p, p- y\rangle + \lambda^2||y-p||^2
+\end{align*}
+iv)
+Let p be a projection of x onto the convex set C and so $||x - p|| \leq ||x - y||$.  When $\lambda = 1$, then $z = y$.  Then  $||x - z||^2 - ||x - p||^2 \geq 0.$ .  And by part (iii) and dividing by $\lambda$
+\begin{align*}
+	0 \leq 2\langle x - p, p - y \rangle + \lambda||y - p||^2
+\end{align*}
+\begin{proof}
+$(\implies :)$ Let P be a projection of x onto C.  So $||x - p|| \leq ||x - y||$ and let $z = \lambda y + (1 - \lambda)p$.  Applying (i), then (iii), then (iv), you get the result. \\
+$(\impliedby :)$ Use (ii) and then the definition of a projection.
+\end{proof}
+
+\subsection*{Exercise 7.8}
+\begin{proof}
+Let $f: \mathbb{R}^m \rightarrow \mathbb{R}$ is convex, $A\in M_{mxn}(\mathbb{R})$, and $b \in \mathbb{R}^m$.  We define the function $g: \mathbb{R}^m \rightarrow \mathbb{R}$ as $g(x) = f(Ax + b)$.  We let $x, y \in \mathbb{R}^n$ where $x\neq y$, and $\lambda \in [0, 1]$. 
+\begin{align*}
+	g(\lambda x + (1 - \lambda) y) &= f(A(\lambda x + (1 - \lambda) y) + b) =  f(\lambda Ax + (1 - \lambda)Ay + b + \lambda b - \lambda b) \\
+	f(\lambda(Ax + b) + (1 - \lambda)(Ay + b)) \leq \lambda f(Ax + b) + (1 - \lambda)f(Ay + b) = \lambda g(x) + (1 - \lambda)g(y)
+\end{align*}
+Therefore, g is convex.
+\end{proof}
+
+\subsection*{Exercise 7.12}
+i)
+\begin{proof}
+	Let $PD_n(\mathbb{R}$ be the set of positive-definite matrices in $M_n(\mathbb{R})$.  We let $ A, B \in PD_n(\mathbb{R})$ and $\lambda \in [0,1]$.  A, B are posititive-definite matrices. Then we know $0 < x^TAx$ and $0 < x^TBx$.  Then,
+\begin{align*}
+	x^T(\lambda A + (1 - \lambda) B) x = \lambda(x^T A x) + (1 - \lambda) x^T B x > 0
+\end{align*}
+So this is a positive-definite matrix.  Thus, this is a convex set.
+\end{proof}
+ii)
+a) Let $g(t) = f(tA + (1 - t)B)$ be convex.  Therefore we know that with $(\lambda u + (1-\lambda) v)$ as our input for $g(\cdot)$:
+\begin{align*}
+	f((\lambda u + (1-\lambda) v)A + (\lambda u + (1-\lambda) v)B) = f(\lambda(uA + (1 - u)B) + (1 - \lambda)(vA + (1 - v)B)) \\
+	\leq \lambda f(uA + (1 - u)B) + (1 - \lambda)f(vA + (1 - v)B).
+\end{align*}
+We let $X = uA + (1 - u)B$ and $Y = vA + (1-v)B$. Therefore,
+\begin{align*}
+	f(\lambda X + (1 - \lambda)Y) \leq \lambda f(X) + (1 - \lambda)f(Y)
+\end{align*}
+Thus, f is convex.
+
+b) 
+
+c)
+************************************************************************************************
+d)
+\begin{align*}
+	g''(t) = \sum^n_{i=1} \frac{(1 - \lambda_i)^2}{(t + (1 - t)\lambda_i)^2}
+\end{align*}
+These are both squared and so non-negative and so therefore the full equation must be non-negative.
+
+\subsection*{Exercise 7.13}
+\begin{proof}
+Let $f:\mathbb{R}^n \rightarrow \mathbb{R}$ is convex and bounded above.  So,
+\begin{align*}
+	f(\lambda x_1 + (1 - \lambda)x_2) \leq \lambda f(x_1) + (1 - \lambda)f(x_2)  \leq \lambda b + (1 - \lambda) b = b\forall x_1, x_2 \in \mathbb{R}^n \\
+	f(\cdot) < b \text{ for some } b \in \mathbb{R}
+\end{align*}
+We assume $f$ is not constant.  Therefore $\exists x, y \in \mathbb{R}^n f(x) > f(y)$.  Then,
+\begin{align*}
+	f(\lambda x_1 + (1 - \lambda)x_2) \leq \lambda f(x_1) + (1-\lambda)f(x_2) \implies \frac{f(\lambda x_1 + (1-\lambda)x_2) - (1-\lambda)f(x_2)}{\lambda} \leq f(x_1)
+\end{align*}
+Let $x = (\lambda x_1 + (1-\lambda)x_2) and y = x_2$, then 
+\begin{align*}
+	\frac{f(x) - (1-\lambda)f(y)}{\lambda} \leq f(\frac{x-(1-\lambda)y}{\lambda}) \implies \frac{f(x) - f(y)}{\lambda} + f(y) \leq f(\frac{x - (1-\lambda)y}{\lambda})
+\end{align*}
+As $\lambda \rightarrow 0^+$ then $\frac{f(x) - f(y)}{\lambda} \rightarrow \infty$.  Then $f$ is not bounded.  This is a contradiction.  Then $f$ must be constant.
+\end{proof}
+
+\subsection*{Exercise 7.20}
+\begin{proof}
+Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be convex and $-f$ also be convex.  Then 
+\begin{align*}
+	f(\lambda x_1 + (1 - \lambda) x_2) \leq \lambda f(x_1) + (1-\lambda)f(x_2) \implies -f(\lambda x_1 + (1 - \lambda) x_2) \geq -\lambda f(x_1) - (1-\lambda)f(x_2), \text{ also we know, } -f(\lambda x_1 + (1 - \lambda) x_2) \leq -\lambda f(x_1) + (1 - \lambda)f(x_2)
+\end{align*}
+so then, $f(\lambda x_1 + (1 - \lambda) x_2) = \lambda f(x_1) + (1-\lambda)f(x_2)$.  This is the definition of a linear transformation.  So we know the linear transformation is a linear function.  Thus, $f$ is affine.
+\end{proof}
+
+\subsection*{Exercise 7.21}
+Let $D \subset \mathbb{R}$ with $f: \mathbb{R}^n \rightarrow D$ and $\phi: D \rightarrow \mathbb{R}$ is a strictly increasing function. Let $\mathcal{B}_{\epsilon}(x)$ be an open ball with radius $\epsilon$.\\
+$(\implies :)$. Assume $x^*$ is a local minimizer for $\phi \circ f(x)$ s.t. $ G(x) \preceq 0, \: H(x) = 0$.  So $\phi(f(x^*)) \leq \phi(f(x)) \forall x \in \mathcal{B}_{\epsilon}(x)$.  Then because $\phi$ is an increasing function then $f(x^*) \leq f(x) \forall x$.  So $x^*$ is a local min.  \\
+$(\impliedby :)$ Assume $x^* \in \mathbb{R}^n$ be a local min of $f(x)$.  So $f(x^*) \leq f(x) \forall x \in \mathcal{B}_{\epsilon}(x)$. When we apply a strictly increasing function then $\phi f(x^*) \leq \phi f(x)\forall x \in \mathcal{B}_{\epsilon}$.  So, $x^*$ is a local min of $\phi \circ f$. 
+
+
+\end{document}
