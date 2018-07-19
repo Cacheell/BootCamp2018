@@ -1,0 +1,154 @@
+\documentclass[11.5pt, letterpaper, bibtotoc,
+    tablecaptionabove, figurecaptionabove]{article}
+
+
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{15pt}
+\setlength{\topmargin}{-25pt}
+\setlength{\topskip}{0in}
+\setlength{\textheight}{8.7in}
+\setlength{\footskip}{0.3in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+
+\usepackage{setspace}
+\setstretch{1.2}
+\setlength{\parskip}{5pt}%{6pt}
+\setlength{\parindent}{0pt}
+
+\usepackage{subfigure}
+\usepackage{subfiles}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\graphicspath{{images/}{../images/}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}{Notation}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remarks}{Remarks}
+\newtheorem{examples}{Examples}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ri}{ri}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\essential}{ess}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+
+\makeatletter
+\newcommand{\leqnomode}{\tagsleft@true\let\veqno\@@leqno}
+\newcommand{\reqnomode}{\tagsleft@false\let\veqno\@@eqno}
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert#1
+\right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+\makeatother
+
+\usepackage{bm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=red,
+}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+
+\textbf{Cache Ellsworth}
+
+\section*{Linear Constrained Optimization Exercises}
+
+\subsection*{Exercise 8.1 }
+See the jupyter notebook in the same folder.
+
+\subsection*{Exercise 8.2}
+See the jupyter notebook in the same folder.
+
+\subsection*{Exercise 8.3}
+The linear optimization problem in standard form which would maximize Kenny's profit on these two toys.
+\begin{align*}
+	\text{maximize}\:\:\:\:&\: 4s + 3d \\
+	\text{subject to}\:\:\:\:&\: 15s + 10d \leq 1800 \\
+	&2s + 2d \leq 350 \\
+	&d \leq 200 \\
+	&s, d \geq 0\\
+\end{align*}
+
+
+\subsection*{Exercise 8.4}
+The linear optimization problem.
+\begin{align*}
+	\text{minimize}\:\:\:\: &\: 2x_{AB} + 5x_{AD} + 2x_{BD} + 5x_{BC} + 7x_{BE} +9x_{BF} + 4x_{DE} + 3x_{EF} + 2x_{CF}\\
+	\text{subject to}\:\:\:\: &\: (x_{AB} + x_{AD}) - 0 = 10 \\
+	&(x_{BC} + x_{BF}+ x_{BE}+ x_{BE}) - (x_{AB})= 1\\
+	&(x_{CF}) - (x_{BC})= -2 \\
+	&(x_{DE}) - (x_{AD})= -3\\
+	&(x_{EF}) - (x_{BE}+ x_{DE})= 4\\
+	&0- (x_{CF}+ x_{BF}+x_{EF})= -10\\
+\end{align*}
+
+
+\subsection*{Exercise 8.5}
+i)
+The dictionary process is as follows
+\begin{align*}
+	\underline{\zeta = \:\:\: 3x_1 + x_2}\\
+	w_1 = 15 - x_1 - 3x_2 \\
+	w_2 = 18 - 2x_1 - 3x_2 \\
+	w_3 = 4 - x_1 + x_2
+\end{align*}
+where $x_1 = 0, x_2 = 0, w_1 = 15, w_2 = 18, w_3 = 4$
+\begin{align*}
+	\underline{\zeta = \:\:\: 12 - 3w_3 + 4x_2}\\
+	w_1 = 11 - w_3 - 5x_2 \\
+	w_2 = 10 + 2w_3 - 5x_2 \\
+	x_1 = 4 - w_3 + x_2
+\end{align*}
+where $x_1 = 4, x_2 = 0, w_1 = 11, w_2 = 10, w_3 = 0$
+
+\begin{align*}
+	\underline{\zeta = \:\:\: 20 - \frac{7}{5}w_3 - \frac{4}{5}w_2}\\
+	w_1 = 1 - w_3 + w_2 \\
+	x_2 = 2 + \frac{2}{5}w_3 - \frac{w_2}{5} \\
+	x_1 = 6 - \frac{3}{5}w_3 - \frac{w_2}{5}
+\end{align*}
+where $x_1 = 6, x_2 = 2, w_1 = 1, w_2 = 0, w_3 = 0$\\
+This shows that the optimal point is $(6, 2)$ and the optimum value is 20.  These agree with the same answers I got in Exercise 8.2.
+ii)
+The dictionary process is as follows
+\begin{align*}
+	\underline{\zeta = \:\:\: 4x + 6y}\\
+	w_1 = 11 + x - y \\
+	w_2 = 27 - x - y \\
+	w_3 = 90 - 2x - 5y
+\end{align*}
+where $x = 0, y = 0, w_1 = 11, w_2 = 27, w_3 = 90$
+\begin{align*}
+	\underline{\zeta = \:\:\: 108 - 4w_2 +2y}\\
+	x = 27 - w_2 - y\\
+	w_1 = 38 - w_2 - 2y \\
+	w_2 = 27 - x - y \\
+	w_3 = 36 + 2w_2 - 3y
+\end{align*}
+where $x = 27, y = 0, w_1 = 38, w_2 = 0, w_3 = 68$
+\begin{align*}
+	\underline{\zeta = \:\:\: 132 - \frac{8}{3}w_2 - \frac{2}{3}w_3}\\
+	x = 15 - \frac{5}{3}w_2 + \frac{w_3}{3}\\
+	y = 12 + \frac{2w_2}{3} - \frac{w_3}{3} \\
+	w_1 = 14 - \frac{7}{3}w_2 + \frac{2}{3}w_3 \\
+\end{align*}
+where $x = 15, y = 12, w_1 = 14, w_2 = 0, w_3 = 0$\\
+This shows that the optimal point is $(15, 12)$ and the optimum value is 132.  These agree with the same answers I got in Exercise 8.2.
+
+\end{document}
