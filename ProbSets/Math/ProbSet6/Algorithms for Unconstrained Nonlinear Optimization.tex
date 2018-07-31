@@ -1,0 +1,209 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set : Measure Theory}} \\
+  OSM 2018 Dr. Evans \\
+  Cache Ellsworth
+  \end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Exercise 9.1}
+\begin{proof}. We let $f(x) = Ax + b$ be a linear function.  Thus an unconstrained linear objective function would be choosing $x$ to maximize or minimize $f(x)$.  First we assume that $f(x)$ is not constant and a minimum exists.  Therefore $A \neq 0$.  Then taking the derivative of the function with respect to $x$ and setting it to 0 to find the minimum we get $A = 0$.  This is a contradiction.
+\end{proof}
+
+\noindent\textbf{Exercise 9.2}
+\begin{proof}
+	\begin{align*}
+		||Ax - b|| & = (Ax - b)^T(Ax - b) = x^TA^TAx - b^TAx - x^TA^Tb + b^Tb \\
+	\end{align*}
+	We notice that $A^TA$ is symmetric and positive definite.  When $x$ satisfies the first order necessary condition, we get 
+	\begin{align*}
+		2A^TAx -A^Tb - A^Tb = 0
+		\implies A^TA x = A^T b
+	\end{align*}
+	Thus the second order-condition is satisfied because $A^TA > 0$.  
+\end{proof}
+\noindent\textbf{Exercise 9.3}
+Gradient Descent - The basic idea: Choose the direction with greatest decrease ( gradient) and move in that direction of length alpha which is choosen that minimizes the distance of the function.  This leads to steepest descent. This makes it a zig-zag down to the minimum.  Also this should be used when convergence is quick but if $\kappa (Q)$ is large than it's slow converging. 
+Types of opt problems it solves:  When the function is differentiable.  It can solve it, but not the optimal choice for every 
+Strengths: Reliable and faster convergence for some problems. 
+Weaknesses: Unreliable in it's converging time depending on the problem. \\
+Newton and Quasi_Newton Methods - The basic idea: Iterative process that returns the next step by taking the last step and subtracting the derivative over the inverse of the second derivative. 
+
+Strengths: Converges extremely rapidly. (quadratically).  Best convergence if n is small. Optimizes in a single step.
+Weaknesses: If the dimension is too large it is too costly.  You can't always find the derivative or second derivative. Depends on the initial point. \\
+Conjugate Gradient - The basic idea:  Moves the function to be minimized along the Q-conjugate directions.  This requires, Q to be symmetric, positive definite and sparse and f to be in a certain form.  
+Strengths: Less expensive than Newton's method.  Halfway compromise between gradient descent and newton.  Help solve large quadratic optimization problems.  
+Weaknesses:   List of restrictions above.  Compromises and so doesn't have a stand alone special feature. \\
+Special Methods for Nonlinear Least Squares - The basic idea:  Square the residuals of a problem and minimize that function. 
+Strengths:  We don't need to know the derivatives.
+Weaknesses: Doesn't converge very fast.  Not guaranteed a for sure minimizer
+ \\
+
+\noindent\textbf{Exercise 9.4}
+\begin{proof}
+$(\implies): $ Assume that $x_1 = Q^{-1}b$
+
+$(\impliedby): $ Let $x_0$ be chosen such that $Df(x_0)^T = Qx_0 - b$ is an eigenvector of $Q$.  So,
+\begin{algin*}
+	x_1 =& x_0 - \frac{(Qx_0 - b)(Qx_0 - b)^T}{(Qx_0 - b)Q(Qx_0 - b)^T}(Qx_0 - b)^T = \\
+	& x_0 - \frac{(Qx_0 - b)(Qx_0 - b)^T}{(Qx_0 - b)\lambda(Qx_0 - b)^T}(Qx_0 - b)^T = \\
+	& x_0 - \frac{1}{\lambda}(Qx_0 - b)^T = \\
+	& x_0 - Q^{-1}(Qx_0 - b)^T = \\
+	& Q^{-1}b \\
+\end{align*}
+\end{proof}
+
+\noindent\textbf{Exercise 9.5}
+\begin{proof}  Taking the derivative of the function $f(x_{k+1}) = f(x_k + \alpha_k Df(x_k))$, we get,
+	\begin{align*}
+		& Df(x_k - \alpha_{k+1}Df^T(x_k))Df^T(x_k) = 0 \\
+	\end{align*}
+	then 
+	\begin{align*}
+		& (x_{k + 1} - x_k)^T(x_{k+2} - x_{k+1}) = (x_k - \alpha_k Df^T(x_k) - x_k)^T(x_{k+1} - \alpha_{k+1} Df^T(x_{k+1}) - x_{k+1})  = \\
+		&  \alpha_k Df(x_k)\alpha_{k+1} Df^T(x_{k+1})  = \\
+		& \alpha_k\alpha_{k+1}Df(x_k - \alpha_{k+1}Df^T(x_k))Df^T(x_k) = \\
+		& 0
+	\end{align*}
+	Thus these are orthogonal.
+\end{proof}
+
+\noindent\textbf{Exercise 9.6}
+See the corresponding jupyter notebook
+
+\noindent\textbf{Exercise 9.7}
+See the corresponding jupyter notebook
+
+\noindent\textbf{Exercise 9.8}
+See the corresponding jupyter notebook
+
+\noindent\textbf{Exercise 9.9}
+See the corresponding jupyter notebook
+
+\noindent\textbf{Exercise 9.10}
+\begin{proof}
+	With the assumptions, we see that newton's method for this problem is
+	\begin{align*}
+		x_{k+1} = x_k - (Q^{-1})(Q^Tx_k - b)= Q^{-1}b
+	\end{align*}
+	We see that this doesn't depend on any previous x or a certain $x_0$.
+\end{proof}
+
+\noindent\textbf{Exercise 9.12}
+\begin{proof}
+	\begin{align*}
+		& Ax = \lambda x \\
+		& \implies (B - \mu I)x = \lambda x \\
+		& \implies Bx = (\lambda + \mu)x \\
+	\end{align*}
+	Therefore, B has the eigenvalue of $\mu + \lambda_1, \mu + \lambda_2, \dots, \mu + \lambda_n$.  They obviously have the same eigenvectors because 
+	\begin{align*}
+		AB = A(A + \mu I ) = AA + \mu A = \mu A + AA = (\muI + A)A = (A + \mu I)A = BA
+	\end{align*}
+\end{proof}
+
+\noindent\textbf{Exercise 9.15}
+\begin{proof} 
+We multiply $A + BCD$ be its proposed inverse.  If it equals $I$ than it is it's true inverse.
+\begin{align*}
+	& (A + BCD)(A^{-1} - A^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} )= \\
+	& AA^{-1} - AA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} = \\
+	& I + BCDA^{-1} - (B + BCDA^{-1}B)(C^{-1} + DA^{-1}B)^{-1}DA^{-1} = \\
+	& I + BCDA^{-1} - BC(C^{-1} + DA^{-1}B)(C^{-1} + DA^{-1}B)^{-1}DA^{-1} =\\
+	& I + BCDA^{-1} - BCDA^{-1} = \\
+	& I \\
+\end{align*}
+\end{proof}
+
+\noindent\textbf{Exercise 9.16}
+???
+
+\noindent\textbf{Exercise 9.18}
+\begin{proof}
+	The $\alpha_k$ for the optimal line search solution for $x_{k+1} = x_k + \alpha_k d_k$.  is 
+	\begin{align*}
+		&\frac{\partial \phi_k(\alpha)}{\partial \alpha} = 0\\
+		&\implies \frac{\partial }{\partial \alpha} (f(x_k + \alpha_kd_k)) = 0\\
+		&\implies \frac{\partial }{\partial \alpha} (\frac{1}{2}(x_k + \alpha_kdk)^TQ(x_k + \alpha d_k) - b^T(x_k+\alpha_kd_k) + c) = 0 \\
+		& \implies \alpha_k(d_k)^TQd^k - b^T(d^k) + (Qx_k)^Td_k = 0 \\
+		& \implies \alpha_k(d_k)^TQd^k = (b - Qx_k)^Td_k \\
+		& \implies \alpha_k = \frac{r_k^Td_k}{d^T_kQd_k} \text{where }r_k = b - Qx_k
+	\end{align*}
+\end{proof}
+
+
+\noindent\textbf{Exercise 9.20}
+
+
+
+\end{document}
